@@ -1,0 +1,41 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><meta name="author" content="Veris"><title>搭建LAMP环境 · 小明的笔记</title><meta name="description" content="任务时间：5min ~ 10min
+安装 MySQL使用yum安装 MySQL：
+1yum install mysql-server -y
+安装完成后，启动 MySQL 服务：
+1service mysqld restart
+设置 MySQL 账户 root 密码：
+1/usr/bin/mysqla"><meta name="keywords"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="renderer" content="webkit"><link rel="short icon" href="/images/favicon.png" type="image/x-icon"><link rel="stylesheet" href="/css/style.css"><link rel="stylesheet" href="/css/blog_basic.css"><link rel="stylesheet" href="/css/font-awesome.min.css"><link rel="alternate" type="application/atom+xml" title="ATOM 1.0" href="/atom.xml"></head><body><div class="sidebar animated fadeInDown"><div class="logo-title"><div class="title"><img src="/images/logo@2x.png" style="width:127px;"><h3 title=""><a href="/">小明的笔记</a></h3></div></div><ul class="social-links"></ul><div class="footer"><a target="_blank" href="/"><span>Theme by </span></a><a href="https://www.caicai.me"> CaiCai </a><span>&</span><a href="https://github.com/Ben02/hexo-theme-Anatole"> Ben</a><div class="by_farbox"><a href="https://hexo.io/zh-cn/" target="_blank">Proudly published with Hexo&#65281;</a></div></div></div><div class="main"><div class="page-top animated fadeInDown"><div class="nav"><li><a href="/">首页</a></li><li><a href="/about">关于</a></li><li><a href="/archives">归档</a></li><li><a href="/links">友链</a></li></div><div class="information"><div class="back_btn"><li><a onclick="window.history.go(-1)" class="fa fa-chevron-left"> </a></li></div><div class="avatar"><img></div></div></div><div class="autopagerize_page_element"><div class="content"><div class="post-page"><div class="post animated fadeInDown"><div class="post-title"><h3><a>搭建LAMP环境</a></h3></div><div class="post-content"><p>任务时间：5min ~ 10min</p>
+<h3 id="安装-MySQL"><a href="#安装-MySQL" class="headerlink" title="安装 MySQL"></a>安装 MySQL</h3><p>使用<code>yum</code>安装 MySQL：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">yum install mysql-server -y</div></pre></td></tr></table></figure>
+<p>安装完成后，启动 MySQL 服务：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">service mysqld restart</div></pre></td></tr></table></figure>
+<p>设置 MySQL 账户 root 密码：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">/usr/bin/mysqladmin -u root password &apos;Password&apos;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>下面命令中的密码是教程为您自动生成的，为了方便实验的进行，不建议使用其它密码。如果设置其它密码，请把密码记住。</p>
+</blockquote>
+<h2 id="安装-Apache-服务"><a href="#安装-Apache-服务" class="headerlink" title="安装 Apache 服务"></a>安装 Apache 服务</h2><blockquote>
+<p>任务时间：5min ~ 10min</p>
+</blockquote>
+<h3 id="安装-Apache"><a href="#安装-Apache" class="headerlink" title="安装 Apache"></a>安装 Apache</h3><p>使用<code>yum</code>安装 Apache</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">yum install httpd -y</div></pre></td></tr></table></figure>
+<p>启动 Apache 服务：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">service httpd start</div></pre></td></tr></table></figure>
+<h2 id="安装-PHP"><a href="#安装-PHP" class="headerlink" title="安装 PHP"></a>安装 PHP</h2><blockquote>
+<p>任务时间：5min ~ 10min</p>
+</blockquote>
+<h3 id="安装-PHP-和-PHP-MYSQL-支持工具："><a href="#安装-PHP-和-PHP-MYSQL-支持工具：" class="headerlink" title="安装 PHP 和 PHP-MYSQL 支持工具："></a>安装 PHP 和 PHP-MYSQL 支持工具：</h3><p>使用<code>yum</code>安装 PHP：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">yum install php php-mysql -y</div></pre></td></tr></table></figure>
+<blockquote>
+<p>CentOS 6 默认已经安装了 php-mysql，下面命令执行的可能会提示已经安装。</p>
+</blockquote>
+<h2 id="检查安装是否成功"><a href="#检查安装是否成功" class="headerlink" title="检查安装是否成功"></a>检查安装是否成功</h2><blockquote>
+<p>任务时间：5min ~ 10min</p>
+</blockquote>
+<h3 id="检验-PHP-是否安装成功"><a href="#检验-PHP-是否安装成功" class="headerlink" title="检验 PHP 是否安装成功"></a>检验 PHP 是否安装成功</h3><p>我们在<em>/var/www/html</em>目录下创建一个info.php文件来检查php是否安装成功，示例代码参考如下</p>
+<h5 id="示例代码：-var-www-html-info-php"><a href="#示例代码：-var-www-html-info-php" class="headerlink" title="示例代码：/var/www/html/info.php"></a>示例代码：/var/www/html/info.php</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;?php phpinfo(); ?&gt;</div></pre></td></tr></table></figure>
+<p>重启 Apache 服务：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">service httpd restart</div></pre></td></tr></table></figure>
+<p>此时，访问<a href="http://xn--%3C%20cvm%20ip%20%3E-yp49ackh32qjw5g/info.php" target="_blank" rel="external">http://&lt;您的 CVM IP 地址&gt;/info.php</a>可浏览到我们刚刚创建的 info.php 页面了</p>
+<h3 id="完成实验"><a href="#完成实验" class="headerlink" title="完成实验"></a>完成实验</h3><p>恭喜！您已经成功完成了搭建 LAMP 服务器的实验任务。</p>
+</div><div class="post-footer"><div class="meta"><div class="info"><i class="fa fa-sun-o"></i><span class="date">2017-08-02</span><i class="fa fa-tag"></i><a href="/categories/Linux/" title="Linux" class="tag">Linux </a></div></div></div></div><div class="share"><div class="evernote"><a href="javascript:(function(){EN_CLIP_HOST='http://www.evernote.com';try{var%20x=document.createElement('SCRIPT');x.type='text/javascript';x.src=EN_CLIP_HOST+'/public/bookmarkClipper.js?'+(new%20Date().getTime()/100000);document.getElementsByTagName('head')[0].appendChild(x);}catch(e){location.href=EN_CLIP_HOST+'/clip.action?url='+encodeURIComponent(location.href)+'&amp;title='+encodeURIComponent(document.title);}})();" ref="nofollow" target="_blank" class="fa fa-bookmark"></a></div><div class="weibo"><a href="javascript:void((function(s,d,e){try{}catch(e){}var f='http://service.weibo.com/share/share.php?',u=d.location.href,p=['url=',e(u),'&amp;title=',e(d.title),'&amp;appkey=2924220432'].join('');function a(){if(!window.open([f,p].join(''),'mb',['toolbar=0,status=0,resizable=1,width=620,height=450,left=',(s.width-620)/2,',top=',(s.height-450)/2].join('')))u.href=[f,p].join('');};if(/Firefox/.test(navigator.userAgent)){setTimeout(a,0)}else{a()}})(screen,document,encodeURIComponent));" class="fa fa-weibo"></a></div><div class="twitter"><a href="http://twitter.com/home?status=,http://note.mostclan.com/2017/08/02/搭建LAMP环境/,小明的笔记,搭建LAMP环境,;" class="fa fa-twitter"></a></div></div><div class="pagination"><ul class="clearfix"><li class="pre pagbuttons"><a role="navigation" href="/2017/08/02/搭建LNMP环境/" title="搭建LNMP环境" class="btn">上一篇</a></li><li class="next pagbuttons"><a role="navigation" href="/2017/08/02/CentOS-6-3安装/" title="CentOS 6.3安装" class="btn">下一篇</a></li></ul></div></div></div></div></div><script src="/js/jquery.js"></script><script src="/js/jquery-migrate-1.2.1.min.js"></script><script src="/js/jquery.appear.js"></script></body></html>

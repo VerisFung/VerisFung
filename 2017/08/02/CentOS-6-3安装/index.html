@@ -1,0 +1,147 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><meta name="author" content="Veris"><title>CentOS 6.3安装 · 小明的笔记</title><meta name="description" content="附：CentOS 6.3下载地址
+
+安装注意事项：
+
+
+CentOS 6.3系统镜像有两个，安装系统只用到第一个镜像即CentOS-6.3-i386-bin-DVD1.iso（32位）或者CentOS-6.3-x86_64-bin-DVD1.iso（64位）,第二个镜像是系统自带软件安装包
+安装Ce"><meta name="keywords"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="renderer" content="webkit"><link rel="short icon" href="/images/favicon.png" type="image/x-icon"><link rel="stylesheet" href="/css/style.css"><link rel="stylesheet" href="/css/blog_basic.css"><link rel="stylesheet" href="/css/font-awesome.min.css"><link rel="alternate" type="application/atom+xml" title="ATOM 1.0" href="/atom.xml"></head><body><div class="sidebar animated fadeInDown"><div class="logo-title"><div class="title"><img src="/images/logo@2x.png" style="width:127px;"><h3 title=""><a href="/">小明的笔记</a></h3></div></div><ul class="social-links"></ul><div class="footer"><a target="_blank" href="/"><span>Theme by </span></a><a href="https://www.caicai.me"> CaiCai </a><span>&</span><a href="https://github.com/Ben02/hexo-theme-Anatole"> Ben</a><div class="by_farbox"><a href="https://hexo.io/zh-cn/" target="_blank">Proudly published with Hexo&#65281;</a></div></div></div><div class="main"><div class="page-top animated fadeInDown"><div class="nav"><li><a href="/">首页</a></li><li><a href="/about">关于</a></li><li><a href="/archives">归档</a></li><li><a href="/links">友链</a></li></div><div class="information"><div class="back_btn"><li><a onclick="window.history.go(-1)" class="fa fa-chevron-left"> </a></li></div><div class="avatar"><img></div></div></div><div class="autopagerize_page_element"><div class="content"><div class="post-page"><div class="post animated fadeInDown"><div class="post-title"><h3><a>CentOS 6.3安装</a></h3></div><div class="post-content"><p>附：<a href="http://www.centoscn.com/CentosSoft/iso/2013/0720/370.html" target="_blank" rel="external">CentOS 6.3下载地址</a></p>
+<blockquote>
+<p>安装注意事项：</p>
+</blockquote>
+<ol>
+<li>CentOS 6.3系统镜像有两个，安装系统只用到第一个镜像即<strong>CentOS-6.3-i386-bin-DVD1.iso（32位）</strong>或者<strong>CentOS-6.3-x86_64-bin-DVD1.iso（64位）</strong>,第二个镜像是系统自带软件安装包</li>
+<li>安装CentOS 6.3系统的计算机<strong>内存必须等于或者大于628M（最小内存628M）</strong>，才能启用图形安装模式</li>
+<li>CentOS 6.3文本安装模式不支持自定义分区，建议使用图形安装模式安装</li>
+<li>CentOS 6.3的系统安装方式分为：<strong>图形安装模式</strong>和<strong>文本安装模式</strong> </li>
+<li>CentOS 6.3的系统运行方式分为：<strong>带图形界面、可以用鼠标操作的图形化方式</strong>和<strong>不带图形界面、直接用命令行操作的文本方式</strong>（具体的系统运行方式，可以在系统安装的过程中自定义选择）</li>
+</ol>
+<blockquote>
+<p>用系统安装盘成功引导之后，出现如下界面：</p>
+</blockquote>
+<p><img src="/2017/08/02/CentOS-6-3安装/QQ截图20170307223818.png" alt=""></p>
+<ul>
+<li>Install or upgrade an existing system [ 安装或升级现有的系统 ]</li>
+<li>install system with basic video driver [ 安装过程中采用 基本的显卡驱动 ]</li>
+<li>Rescue installed system [ 进入系统修复模式 ]</li>
+<li>Boot from local drive [ 退出安装从硬盘启动 ]</li>
+<li>Memory test [ 内存检测 ]</li>
+</ul>
+<blockquote>
+<p>这里选择第一项，安装或升级现有的系统，回车。<br>出现是否对CD媒体进行测试的提问，这里选择“Skip”跳过测试。</p>
+</blockquote>
+<p><img src="/2017/08/02/CentOS-6-3安装/QQ截图20170307224402.png" alt=""></p>
+<blockquote>
+<p>在一路配置语言、键盘、时区设置之后，注意一下空间划分。</p>
+</blockquote>
+<p><img src="/2017/08/02/CentOS-6-3安装/QQ截图20170307224821.png" alt=""></p>
+<blockquote>
+<p>合理空间的划分关系到服务器性能和扩展，这里我选择<strong>创建自定义布局</strong>。</p>
+</blockquote>
+<p><strong>分区的注意事项</strong></p>
+<ul>
+<li>图形化安装注意内存大小（推荐1G及以上）</li>
+<li>分区类型<ul>
+<li><strong>主分区</strong>：最多<strong>4</strong>个，可以拿1个当做扩展分区。</li>
+<li><strong>扩展分区</strong>：最多<strong>1</strong>个，只能用来包含逻辑分区，扩展分区加主分区最多4个。</li>
+<li><strong>逻辑分区</strong>：分区数超过3个后（包括4个），自动出现在扩展分区里的描述分区。</li>
+</ul>
+</li>
+<li>格式化（写入文件系统）<ul>
+<li>Windows：<code>fat16</code> <code>fat32</code> <code>ntfs</code></li>
+<li>Linux：<code>ext2</code> <code>ext3</code> <code>ext4</code></li>
+<li>越新的文件系统，支持硬盘分区大小更大，单文件更大，读写速度更快，数据更安全</li>
+</ul>
+</li>
+<li>Linux分区表示（设备名）<ul>
+<li>/dev/hda1    hd:IDE硬盘 sd:SCSI,STAT硬盘 a:第一块硬盘 1：第一个分区</li>
+<li>/dev/sda1 第一块SCSI硬盘第一个主分区</li>
+<li>/dev/sdc5 第三块SCSI硬盘第一个逻辑分区</li>
+</ul>
+</li>
+</ul>
+<p><img src="/2017/08/02/CentOS-6-3安装/QQ截图20170307230049.png" alt=""></p>
+<p><strong>硬件设备文件名</strong></p>
+<table>
+<thead>
+<tr>
+<th>硬件</th>
+<th>设备文件名</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>IDE硬盘</td>
+<td>/dev/hd[a-d]</td>
+</tr>
+<tr>
+<td>SCSI/SATA/USB硬盘</td>
+<td>/dev/sd[a-p]</td>
+</tr>
+<tr>
+<td>光驱</td>
+<td>/dev/cdrom或/dev/sr0</td>
+</tr>
+<tr>
+<td>软盘</td>
+<td>/dev/fd[0-1]</td>
+</tr>
+<tr>
+<td>打印机（25针）</td>
+<td>/dev/lp[0-2]</td>
+</tr>
+<tr>
+<td>打印机（USB）</td>
+<td>/dev/usb/lp[0-15]</td>
+</tr>
+<tr>
+<td>鼠标</td>
+<td>/dev/mouse</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>以下是我的分区情况：</p>
+</blockquote>
+<p><img src="/2017/08/02/CentOS-6-3安装/QQ截图20170307233101.png" alt=""></p>
+<p><strong>注意事项</strong></p>
+<ul>
+<li>必须分区<ul>
+<li><code>/</code> 根分区必须单独分，越大越好。这里我选择了<strong>使用全部可用空间</strong></li>
+<li><code>swap分区</code> 交换分区（虚拟内存），注意是在<strong>文件系统类型</strong>中选择，Linux内存2倍，不要大于2GB</li>
+</ul>
+</li>
+<li>推荐分区<ul>
+<li><code>/boot</code> 启动分区</li>
+<li><code>/home</code> 家目录类似我的文档</li>
+<li><code>/www</code> 网页程序空间</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>分区完毕后选择 <strong>格式化</strong> -&gt; <strong>将修改写入磁盘</strong> -&gt; <strong>下一步</strong> 确认引导。</p>
+</blockquote>
+<p><img src="/2017/08/02/CentOS-6-3安装/QQ截图20170307233932.png" alt=""></p>
+<p>默认是：<code>Minimal</code>(最小)<br>如果是初次学习，建议选择：<code>Desktop</code> (桌面版)<br>如果是用作正式服务器，建议选择：<code>Minimal</code>(最小)</p>
+<ul>
+<li><code>Desktop</code>：基本的桌面系统，包括常用的桌面软件，如文档查看工具。</li>
+<li><code>Minimal Desktop</code>：基本的桌面系统，包含的软件更少。</li>
+<li><code>Minimal</code>：基本的系统，不含有任何可选的软件包。</li>
+<li><code>Basic Server</code>：安装的基本系统的平台支持，不包含桌面。</li>
+<li><code>Database Server</code>：基本系统平台，加上MySQL和PostgreSQL数据库，无桌面。</li>
+<li><code>Web Server</code>：基本系统平台，加上PHP，Web server，还有MySQL和PostgreSQL数据库的客户端，无桌面。</li>
+<li><code>Virtual Host</code>：基本系统加虚拟平台。</li>
+<li><code>Software Development Workstation</code>：包含软件包较多，基本系统，虚拟化平台，桌面环境，开发工具。</li>
+</ul>
+<blockquote>
+<p>这里我选择<code>Basic Server</code>，安装Linux基本是用来构建服务器的，所以基本上选择<code>Basic Server</code>就OK了。如果有特殊要求可以选择<strong>自定义</strong>，没有的话就直接开始安装我们的<code>CentOS</code>啦！</p>
+</blockquote>
+<p><img src="/2017/08/02/CentOS-6-3安装/QQ截图20170307235008.png" alt=""></p>
+<blockquote>
+<p>大约十分钟左右就能安装完毕！装完后会让你<strong>重新引导</strong>。</p>
+</blockquote>
+<p><img src="/2017/08/02/CentOS-6-3安装/QQ截图20170307235704.png" alt=""></p>
+<blockquote>
+<p>重启后便可登录我们的用户，敬请探索Linux的世界！</p>
+</blockquote>
+<p><img src="/2017/08/02/CentOS-6-3安装/QQ截图20170307235933.png" alt=""></p>
+</div><div class="post-footer"><div class="meta"><div class="info"><i class="fa fa-sun-o"></i><span class="date">2017-08-02</span><i class="fa fa-tag"></i><a href="/categories/Linux/" title="Linux" class="tag">Linux </a></div></div></div></div><div class="share"><div class="evernote"><a href="javascript:(function(){EN_CLIP_HOST='http://www.evernote.com';try{var%20x=document.createElement('SCRIPT');x.type='text/javascript';x.src=EN_CLIP_HOST+'/public/bookmarkClipper.js?'+(new%20Date().getTime()/100000);document.getElementsByTagName('head')[0].appendChild(x);}catch(e){location.href=EN_CLIP_HOST+'/clip.action?url='+encodeURIComponent(location.href)+'&amp;title='+encodeURIComponent(document.title);}})();" ref="nofollow" target="_blank" class="fa fa-bookmark"></a></div><div class="weibo"><a href="javascript:void((function(s,d,e){try{}catch(e){}var f='http://service.weibo.com/share/share.php?',u=d.location.href,p=['url=',e(u),'&amp;title=',e(d.title),'&amp;appkey=2924220432'].join('');function a(){if(!window.open([f,p].join(''),'mb',['toolbar=0,status=0,resizable=1,width=620,height=450,left=',(s.width-620)/2,',top=',(s.height-450)/2].join('')))u.href=[f,p].join('');};if(/Firefox/.test(navigator.userAgent)){setTimeout(a,0)}else{a()}})(screen,document,encodeURIComponent));" class="fa fa-weibo"></a></div><div class="twitter"><a href="http://twitter.com/home?status=,http://note.mostclan.com/2017/08/02/CentOS-6-3安装/,小明的笔记,CentOS 6.3安装,;" class="fa fa-twitter"></a></div></div><div class="pagination"><ul class="clearfix"><li class="pre pagbuttons"><a role="navigation" href="/2017/08/02/搭建LAMP环境/" title="搭建LAMP环境" class="btn">上一篇</a></li><li class="next pagbuttons"><a role="navigation" href="/2017/08/02/搭建Git服务器教程/" title="搭建Git服务器教程" class="btn">下一篇</a></li></ul></div></div></div></div></div><script src="/js/jquery.js"></script><script src="/js/jquery-migrate-1.2.1.min.js"></script><script src="/js/jquery.appear.js"></script></body></html>

@@ -1,0 +1,69 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><meta name="author" content="Veris"><title>【cURL】CURLOPT_RETURNTRANSFER选项使用实验详解 · 小明的笔记</title><meta name="description" content="curl_setopt($ch,CURLOPT_RETURNTRANSFER,1);
+参数值：
+
+false： 关闭返回，直接输出内容
+true： 开启返回，不直接输出内容
+
+
+开启后使用curl_exec函数或curl_multi_getcontent函数返回网站内容，两个函数的返回区别如下：
+
+"><meta name="keywords"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="renderer" content="webkit"><link rel="short icon" href="/images/favicon.png" type="image/x-icon"><link rel="stylesheet" href="/css/style.css"><link rel="stylesheet" href="/css/blog_basic.css"><link rel="stylesheet" href="/css/font-awesome.min.css"><link rel="alternate" type="application/atom+xml" title="ATOM 1.0" href="/atom.xml"></head><body><div class="sidebar animated fadeInDown"><div class="logo-title"><div class="title"><img src="/images/logo@2x.png" style="width:127px;"><h3 title=""><a href="/">小明的笔记</a></h3></div></div><ul class="social-links"></ul><div class="footer"><a target="_blank" href="/"><span>Theme by </span></a><a href="https://www.caicai.me"> CaiCai </a><span>&</span><a href="https://github.com/Ben02/hexo-theme-Anatole"> Ben</a><div class="by_farbox"><a href="https://hexo.io/zh-cn/" target="_blank">Proudly published with Hexo&#65281;</a></div></div></div><div class="main"><div class="page-top animated fadeInDown"><div class="nav"><li><a href="/">首页</a></li><li><a href="/about">关于</a></li><li><a href="/archives">归档</a></li><li><a href="/links">友链</a></li></div><div class="information"><div class="back_btn"><li><a onclick="window.history.go(-1)" class="fa fa-chevron-left"> </a></li></div><div class="avatar"><img></div></div></div><div class="autopagerize_page_element"><div class="content"><div class="post-page"><div class="post animated fadeInDown"><div class="post-title"><h3><a>【cURL】CURLOPT_RETURNTRANSFER选项使用实验详解</a></h3></div><div class="post-content"><p><code>curl_setopt($ch,CURLOPT_RETURNTRANSFER,1);</code></p>
+<p>参数值：</p>
+<ul>
+<li>false： 关闭返回，直接输出内容</li>
+<li>true： 开启返回，不直接输出内容</li>
+</ul>
+<blockquote>
+<p>开启后使用<code>curl_exec</code>函数或<code>curl_multi_getcontent</code>函数返回网站内容，两个函数的返回区别如下：</p>
+</blockquote>
+<ul>
+<li><strong>使用</strong><code>curl_exec</code><strong>函数</strong>  <figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;?php</span></div><div class="line">    $ch=curl_init();</div><div class="line">    curl_setopt($ch,CURLOPT_URL,<span class="string">'http://www.mostclan.com/'</span>);</div><div class="line">    curl_setopt($ch,CURLOPT_HEADER,<span class="number">0</span>);</div><div class="line">    $a=curl_exec($ch);</div><div class="line">    curl_close($ch);</div><div class="line">    var_dump($a);</div><div class="line"><span class="meta">?&gt;</span></div></pre></td></tr></table></figure>
+</li>
+</ul>
+<pre><code>执行结果：
+* 直接输出了网页内容
+* curl_exec函数返回`boolean true`
+</code></pre><ul>
+<li><p><strong>使用</strong><code>curl_multi_getcontent</code><strong>函数</strong></p>
+  <figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;?php</span></div><div class="line">    $ch=curl_init();</div><div class="line">    curl_setopt($ch,CURLOPT_URL,<span class="string">'http://www.mostclan.com/'</span>);</div><div class="line">    curl_setopt($ch,CURLOPT_HEADER,<span class="number">0</span>);</div><div class="line">    curl_setopt($ch,CURLOPT_RETURNTRANSFER,<span class="number">1</span>);</div><div class="line">    $a=curl_exec($ch);</div><div class="line">    $b=curl_multi_getcontent($ch);</div><div class="line">    curl_close($ch);</div><div class="line">    var_dump($a);</div><div class="line">    var_dump($b);</div><div class="line"><span class="meta">?&gt;</span></div></pre></td></tr></table></figure>
+</li>
+</ul>
+<pre><code>* 设置`CURLOPT_RETURNTRANSFER`为`true`结果：
+
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">string '<span class="meta">&lt;!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">xmlns</span>=<span class="string">"http://www.w3.org/1999/xhtml"</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">http-equiv</span>=<span class="string">"Content-Type"</span> <span class="attr">content</span>=<span class="string">"text/html; charset=UTF-8"</span> /&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">title</span>&gt;</span>最族 - 关注互联网技术的网络工作室<span class="tag">&lt;/<span class="name">title</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"keywords"</span> <span class="attr">content</span>=<span class="string">"最族,最族网络,最族游戏,最族软件,最族工作室,最族网络工作室,最族天下,最族传媒,最族科技,游戏制作,独立游戏开发,Mostclan,Veris,Game'... (length=59109)</span></span></div></pre></td></tr></table></figure>
+
+
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">string '<span class="meta">&lt;!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">xmlns</span>=<span class="string">"http://www.w3.org/1999/xhtml"</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">http-equiv</span>=<span class="string">"Content-Type"</span> <span class="attr">content</span>=<span class="string">"text/html; charset=UTF-8"</span> /&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">title</span>&gt;</span>最族 - 关注互联网技术的网络工作室<span class="tag">&lt;/<span class="name">title</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"keywords"</span> <span class="attr">content</span>=<span class="string">"最族,最族网络,最族游戏,最族软件,最族工作室,最族网络工作室,最族天下,最族传媒,最族科技,游戏制作,独立游戏开发,Mostclan,Veris,Game'... (length=59109)</span></span></div></pre></td></tr></table></figure>
+
+
+返回了两个网页源代码
+
+* 设置`CURLOPT_RETURNTRANSFER`为`false`结果：
+
+    * $a 返回 boolean true 并直接输出网页内容
+    * $b 返回 null
+</code></pre><blockquote>
+<p>总结：<code>CURLOPT_RETURNTRANSFER</code>值为<code>true</code>时则会终止<code>curl_exec</code>直接输出内容，且将内容已函数返回值的形式返回，可用<code>curl_exec</code>或<code>curl_multi_getcontent</code>获取返回值；不同的是当<code>CURLOPT_RETURNTRANSFER</code>值为<code>false</code>时，<code>curl_exec</code>值为<code>布尔值</code>，<code>curl_multi_getcontent</code>为<code>字符串</code>或<code>null</code>值。</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">CURLOPT_RETURNTRANSFER</th>
+<th style="text-align:left">curl_exec()</th>
+<th style="text-align:left">curl_multi_getcontent()</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">true 或 1</td>
+<td style="text-align:left">终止输出页面内容，返回获取的文本流，无内容返回空串，若curl执行失败则返回false</td>
+<td style="text-align:left">返回获取的文本流，无内容返回null</td>
+</tr>
+<tr>
+<td style="text-align:left">false 或 0</td>
+<td style="text-align:left">输出页面内容，返回cURL状态</td>
+<td style="text-align:left">返回null</td>
+</tr>
+</tbody>
+</table>
+</div><div class="post-footer"><div class="meta"><div class="info"><i class="fa fa-sun-o"></i><span class="date">2017-08-02</span><i class="fa fa-tag"></i><a href="/categories/PHP/" title="PHP" class="tag">PHP </a><a href="/tags/cURL/" title="cURL" class="tag">cURL </a></div></div></div></div><div class="share"><div class="evernote"><a href="javascript:(function(){EN_CLIP_HOST='http://www.evernote.com';try{var%20x=document.createElement('SCRIPT');x.type='text/javascript';x.src=EN_CLIP_HOST+'/public/bookmarkClipper.js?'+(new%20Date().getTime()/100000);document.getElementsByTagName('head')[0].appendChild(x);}catch(e){location.href=EN_CLIP_HOST+'/clip.action?url='+encodeURIComponent(location.href)+'&amp;title='+encodeURIComponent(document.title);}})();" ref="nofollow" target="_blank" class="fa fa-bookmark"></a></div><div class="weibo"><a href="javascript:void((function(s,d,e){try{}catch(e){}var f='http://service.weibo.com/share/share.php?',u=d.location.href,p=['url=',e(u),'&amp;title=',e(d.title),'&amp;appkey=2924220432'].join('');function a(){if(!window.open([f,p].join(''),'mb',['toolbar=0,status=0,resizable=1,width=620,height=450,left=',(s.width-620)/2,',top=',(s.height-450)/2].join('')))u.href=[f,p].join('');};if(/Firefox/.test(navigator.userAgent)){setTimeout(a,0)}else{a()}})(screen,document,encodeURIComponent));" class="fa fa-weibo"></a></div><div class="twitter"><a href="http://twitter.com/home?status=,http://note.mostclan.com/2017/08/02/【cURL】CURLOPT-RETURNTRANSFER选项使用实验详解/,小明的笔记,【cURL】CURLOPT_RETURNTRANSFER选项使用实验详解,;" class="fa fa-twitter"></a></div></div><div class="pagination"><ul class="clearfix"><li class="pre pagbuttons"><a role="navigation" href="/2017/08/02/【cURL】实例一、上传文件/" title="【cURL】实例一、上传文件" class="btn">上一篇</a></li><li class="next pagbuttons"><a role="navigation" href="/2017/08/02/【cURL】获取一个网页内容/" title="【cURL】cURL获取一个网页内容" class="btn">下一篇</a></li></ul></div></div></div></div></div><script src="/js/jquery.js"></script><script src="/js/jquery-migrate-1.2.1.min.js"></script><script src="/js/jquery.appear.js"></script></body></html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><meta name="author" content="Veris"><title>Git学习笔记 · 小明的笔记</title><meta name="description" content="一.Git配置1.全局设置名字和邮箱（用作提交commit时的签名）
+git config –global &amp;lt;配置名称&amp;gt; &amp;lt;配置的值&amp;gt;
+
+12$ git config --global user.name &amp;quot;Veris&amp;quot;$ git config --glo"><meta name="keywords"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="renderer" content="webkit"><link rel="short icon" href="/images/favicon.png" type="image/x-icon"><link rel="stylesheet" href="/css/style.css"><link rel="stylesheet" href="/css/blog_basic.css"><link rel="stylesheet" href="/css/font-awesome.min.css"><link rel="alternate" type="application/atom+xml" title="ATOM 1.0" href="/atom.xml"></head><body><div class="sidebar animated fadeInDown"><div class="logo-title"><div class="title"><img src="/images/logo@2x.png" style="width:127px;"><h3 title=""><a href="/">小明的笔记</a></h3></div></div><ul class="social-links"></ul><div class="footer"><a target="_blank" href="/"><span>Theme by </span></a><a href="https://www.caicai.me"> CaiCai </a><span>&</span><a href="https://github.com/Ben02/hexo-theme-Anatole"> Ben</a><div class="by_farbox"><a href="https://hexo.io/zh-cn/" target="_blank">Proudly published with Hexo&#65281;</a></div></div></div><div class="main"><div class="page-top animated fadeInDown"><div class="nav"><li><a href="/">首页</a></li><li><a href="/about">关于</a></li><li><a href="/archives">归档</a></li><li><a href="/links">友链</a></li></div><div class="information"><div class="back_btn"><li><a onclick="window.history.go(-1)" class="fa fa-chevron-left"> </a></li></div><div class="avatar"><img></div></div></div><div class="autopagerize_page_element"><div class="content"><div class="post-page"><div class="post animated fadeInDown"><div class="post-title"><h3><a>Git学习笔记</a></h3></div><div class="post-content"><h2 id="一-Git配置"><a href="#一-Git配置" class="headerlink" title="一.Git配置"></a>一.Git配置</h2><h3 id="1-全局设置名字和邮箱（用作提交commit时的签名）"><a href="#1-全局设置名字和邮箱（用作提交commit时的签名）" class="headerlink" title="1.全局设置名字和邮箱（用作提交commit时的签名）"></a>1.全局设置名字和邮箱（用作提交commit时的签名）</h3><blockquote>
+<p>git config –global &lt;配置名称&gt; &lt;配置的值&gt;</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ git config --global user.name &quot;Veris&quot;</div><div class="line">$ git config --global user.email &quot;562854011@qq.com&quot;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>临时更改配置则不带–global选项，该操作会在当前项目下创建 .git/config，从而使用针对当前项目的配置</p>
+</blockquote>
+<h3 id="2-查看生成的配置文件（-gitconfig）"><a href="#2-查看生成的配置文件（-gitconfig）" class="headerlink" title="2.查看生成的配置文件（.gitconfig）"></a>2.查看生成的配置文件（.gitconfig）</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">$ cat ~/.gitconfig</div><div class="line">[user]</div><div class="line">        email = 562854011@qq.com</div><div class="line">        name = Veris</div></pre></td></tr></table></figure>
+<h2 id="二-获得一个Git仓库（新建-克隆，复制）"><a href="#二-获得一个Git仓库（新建-克隆，复制）" class="headerlink" title="二.获得一个Git仓库（新建/克隆，复制）"></a>二.获得一个Git仓库（新建/克隆，复制）</h2><h3 id="1-Clone一个仓库"><a href="#1-Clone一个仓库" class="headerlink" title="1.Clone一个仓库"></a>1.Clone一个仓库</h3><blockquote>
+<p>Git能在许多协议下使用，所以Git URL可能以ssh://, http(s)://, git://. 有些仓库可以通过不只一种协议来访问。</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ git clone http://git.shiyanlou.com/shiyanlou/gitproject</div></pre></td></tr></table></figure>
+<blockquote>
+<p>clone操作完成后，会发现当前目录下多了一个gitproject文件夹，这个文件夹里的内容就是我们刚刚clone下来的代码。</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ cd gitproject/</div><div class="line">(master)$ ls </div><div class="line">README.md</div></pre></td></tr></table></figure>
+<blockquote>
+<p>由于实验楼的Linux使用的是zsh Shell，zsh会判断当前的目录是否有Git仓库，如果是的话则自动把目前所在的git分支显示在提示符中。</p>
+</blockquote>
+<h3 id="2-初始化一个新的仓库"><a href="#2-初始化一个新的仓库" class="headerlink" title="2.初始化一个新的仓库"></a>2.初始化一个新的仓库</h3><blockquote>
+<p>可以对一个已存在的文件夹用下面的命令让它置于Git的版本控制管理之下。</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">$ cd /home/shiyanlou/</div><div class="line">$ mkdir project</div><div class="line">$ cd project</div><div class="line">$ git init</div></pre></td></tr></table></figure>
+<blockquote>
+<p>Git会输出Initialized empty Git repository in /home/shiyanlou/project/.git/</p>
+<p>通过ls -la命令会发现project目录下会有一个名叫.git 的目录被创建，这意味着一个仓库被初始化了。可以进入到.git目录查看下有哪些内容。</p>
+</blockquote>
+<h2 id="三-正常的工作流程"><a href="#三-正常的工作流程" class="headerlink" title="三.正常的工作流程"></a>三.正常的工作流程</h2><p><strong>git的基本流程如下：</strong></p>
+<ol>
+<li>创建或修改文件</li>
+<li>使用<code>git add</code>命令添加新创建或修改的文件到本地的缓存区（Index）</li>
+<li>使用<code>git commit</code>命令提交到本地代码库</li>
+<li>（可选，有的时候并没有可以同步的远端代码库）使用<code>git push</code>命令将本地代码库同步到远端代码库</li>
+<li></li>
+</ol>
+</div><div class="post-footer"><div class="meta"><div class="info"><i class="fa fa-sun-o"></i><span class="date">2017-08-02</span><i class="fa fa-tag"></i><a href="/categories/Git/" title="Git" class="tag">Git </a><a href="/tags/Git/" title="Git" class="tag">Git </a></div></div></div></div><div class="share"><div class="evernote"><a href="javascript:(function(){EN_CLIP_HOST='http://www.evernote.com';try{var%20x=document.createElement('SCRIPT');x.type='text/javascript';x.src=EN_CLIP_HOST+'/public/bookmarkClipper.js?'+(new%20Date().getTime()/100000);document.getElementsByTagName('head')[0].appendChild(x);}catch(e){location.href=EN_CLIP_HOST+'/clip.action?url='+encodeURIComponent(location.href)+'&amp;title='+encodeURIComponent(document.title);}})();" ref="nofollow" target="_blank" class="fa fa-bookmark"></a></div><div class="weibo"><a href="javascript:void((function(s,d,e){try{}catch(e){}var f='http://service.weibo.com/share/share.php?',u=d.location.href,p=['url=',e(u),'&amp;title=',e(d.title),'&amp;appkey=2924220432'].join('');function a(){if(!window.open([f,p].join(''),'mb',['toolbar=0,status=0,resizable=1,width=620,height=450,left=',(s.width-620)/2,',top=',(s.height-450)/2].join('')))u.href=[f,p].join('');};if(/Firefox/.test(navigator.userAgent)){setTimeout(a,0)}else{a()}})(screen,document,encodeURIComponent));" class="fa fa-weibo"></a></div><div class="twitter"><a href="http://twitter.com/home?status=,http://note.mostclan.com/2017/08/02/Git学习笔记/,小明的笔记,Git学习笔记,;" class="fa fa-twitter"></a></div></div><div class="pagination"><ul class="clearfix"><li class="pre pagbuttons"><a role="navigation" href="/2017/08/02/搭建Git服务器教程/" title="搭建Git服务器教程" class="btn">上一篇</a></li></ul></div></div></div></div></div><script src="/js/jquery.js"></script><script src="/js/jquery-migrate-1.2.1.min.js"></script><script src="/js/jquery.appear.js"></script></body></html>
